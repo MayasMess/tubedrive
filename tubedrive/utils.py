@@ -5,7 +5,7 @@ from typing import List
 from moviepy.editor import VideoFileClip
 from moviepy.video.compositing.concatenate import concatenate_videoclips
 
-from models import VideoMp4
+from .models import VideoMp4
 
 
 def create_file_if_not_exists(path: str):
@@ -20,7 +20,8 @@ def create_dir_if_not_exists(path: str):
 
 def list_mp4_files_recursively(directory) -> list:
     result = []
-    for root, dirs, files in os.walk(directory):
+    for root, dirs, files in os.walk(directory, topdown=True):
+        dirs[:] = [d for d in dirs if d not in ['.tubedrive']]
         for file in files:
             if file.endswith(".mp4"):
                 result.append(os.path.join(root, file))

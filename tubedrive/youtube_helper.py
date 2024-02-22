@@ -6,7 +6,7 @@ import googleapiclient
 import googleapiclient.discovery
 from googleapiclient.http import MediaFileUpload
 from google.auth.transport.requests import Request
-from models import YoutubeVideo
+from .models import YoutubeVideo
 
 
 class YoutubeHelper:
