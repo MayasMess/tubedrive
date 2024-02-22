@@ -8,6 +8,12 @@ def get_new_uuid() -> str:
 
 
 @dataclass
+class GcpClientSecret:
+    path: str
+    id: str = field(default_factory=get_new_uuid)
+
+
+@dataclass
 class VideoMp4:
     path: str
     length_s: int

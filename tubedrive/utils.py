@@ -5,12 +5,17 @@ from typing import List
 from moviepy.editor import VideoFileClip
 from moviepy.video.compositing.concatenate import concatenate_videoclips
 
-from tubedrive.models import VideoMp4
+from models import VideoMp4
 
 
 def create_file_if_not_exists(path: str):
     fle = Path(path)
     fle.touch(exist_ok=True)
+
+
+def create_dir_if_not_exists(path: str):
+    if not os.path.exists(path):
+        os.makedirs(path)
 
 
 def list_mp4_files_recursively(directory) -> list:
@@ -22,7 +27,7 @@ def list_mp4_files_recursively(directory) -> list:
     return result
 
 
-def get_all_videos_mp4(files: list, youtube_video_id: str) -> List[VideoMp4]:
+def get_all_videos_mp4(files: list) -> List[VideoMp4]:
     result = []
     end_time_s = 0
     for file_path in files:
@@ -34,7 +39,6 @@ def get_all_videos_mp4(files: list, youtube_video_id: str) -> List[VideoMp4]:
             length_s=file_clip.duration,
             start_time_s=int(start_time_s),
             end_time_s=int(end_time_s),
-            id=youtube_video_id
         )
         result.append(video_mp4)
     return result

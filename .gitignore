@@ -135,6 +135,8 @@ venv.bak/
 # Rope project settings
 .ropeproject
 .idea
+tubedrive/.tubedrive
+.tubedrive
 inputs/
 youtube_mock/
 # mkdocs documentation
